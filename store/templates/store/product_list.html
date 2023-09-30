@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>Product List</h2>
+  <ul>
+    {% for product in products %}
+    <li>
+      <h3>{{ product.title }}</h3>
+      <p>Price: ${{ product.price }}</p>
+      <p>{{ product.description }}</p>
+      <p>Category: {{ product.category }}</p>
+      <p>Tags: {{ product.tags.all|join:", " }}</p>
+      <img src="{{ product.image.url }}" alt="{{ product.title }}" width="300" height="200">
+    </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
+
+<!-- ################################################################# -->
+<!-- <div class="product">
+  <h3>Product Title</h3>
+  <p>Description of the product...</p>
+  <p>Price: $29.99</p>
+  <img src="/media/products/product-image.jpg" alt="Product Image">
+</div> -->
