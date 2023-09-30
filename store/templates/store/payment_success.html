@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>Payment Successful</h2>
+  <p>Thank you for your purchase! Your payment has been successfully processed.</p>
+  <!-- You can display order details or a confirmation message here -->
+  <p>Your order will be processed and shipped soon.</p>
+  <p><a href="{% url 'product_list' %}">Continue Shopping</a></p>
+{% endblock %}

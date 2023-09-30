@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>Checkout</h2>
+
+  <!-- Display the list of items in the shopping cart -->
+  <h3>Order Summary</h3>
+  <ul>
+    {% for item in cart %}
+      <li>
+        <h4>{{ item.product.title }}</h4>
+        <p>Price: ${{ item.product.price }}</p>
+        <p>Quantity: {{ item.quantity }}</p>
+        <p>Subtotal: ${{ item.subtotal }}</p>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <!-- Display the total price of the order -->
+  <p>Total Price: ${{ total_price }}</p>
+
+  <!-- Payment form -->
+  <h3>Payment</h3>
+  <form method="post" action="{% url 'checkout' %}">
+    {% csrf_token %}
+
+<!-- Include payment fields such as card number, expiration date, and CVC -->
+    <!-- You can use JavaScript and Stripe elements to handle payment information securely -->
+    <!-- Example: https://stripe.com/docs/stripe-js -->
+
+    <button type="submit">Place Order</button>
+  </form>
+
+  <!-- Provide a link to cancel the checkout and return to shopping -->
+  <p><a href="{% url 'product_list' %}">Cancel and Continue Shopping</a></p>
+{% endblock %}

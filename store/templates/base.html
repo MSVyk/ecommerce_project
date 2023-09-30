@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>{% block title %}My E-commerce Site{% endblock %}</title>
+      <link rel="stylesheet" href="{% static 'store/css/styles.css' %}">
+      <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}"> -->
+  </head>
+  <body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/products/">Products</a></li>
+                <!-- <li><a href="/cart/">Cart</a></li> -->
+                <li><a href="/checkout/">Checkout</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="/order_history/">Order History</a></li>
+                    <li><a href="/logout/">Logout</a></li>
+                {% else %}
+                    <li><a href="/login/">Login</a></li>
+                    <li><a href="/register/">Register</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+  <main>
+        {% block content %}
+        {% if user.is_authenticated %}
+            <p>Welcome, {{ user.username }}! You are logged in.</p>
+                {% else %}
+                    <p>You are logged out.</p>
+                    Please
+                    <a href="{% url 'login' %}">Login</a>
+                    <br/>
+                {% endif %}
+        {% endblock %}
+    </main>
+    <footer>
+        &copy; {{ year }} My E-commerce Site
+    </footer>
+  </body>
+</html>
